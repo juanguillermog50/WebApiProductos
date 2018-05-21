@@ -1,0 +1,103 @@
+﻿<div class="container">
+    <div class="jumbotron text-center">
+        <h1><b>Web Api Productos</b></h1>
+        <p class="lead">Master para insertar, actualizar, listar y eliminar productos.</p>
+    </div>
+</div>
+    <div data-ng-app="RESTClientModule">
+        <div data-ng-controller="AngularJs_productosController">
+            <div class="container">
+                <div class="jumbotron">
+                    <h2><b>Agregar/Editar Producto</b></h2>
+                </div>
+                <form class="form-horizontal" ng-submit="guardarProducto()">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="txtIds">Id:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtIds" class="w3-input w3-animate-input" style="width:25%" ng-model="Ids" value="0" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="txtNombre">Nombre:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtNombre" class="w3-input w3-animate-input" style="width:25%" ng-model="Nombres" placeholder="Nombre" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="txtDescripcion">Descripcion:</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtDescripcion" class="w3-input w3-animate-input" style="width:25%" ng-model="Descripciones" placeholder="Descripción" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="selEstado">Estado:</label>
+                        <div class="col-md-10">
+                            <select name="selEstado" class="w3-select w3-animate-input" style="width:25%" ng-model="Estados">
+                                <option value="Activo" selected>Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-7 col-sm-offset-5">
+                            <input type="submit" class="btn btn-primary" value="Guardar" />
+                        </div>
+                        <div class="col-sm-7 col-sm-offset-5">
+                            <input type="reset" class="btn btn-primary" value="Limpiar" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="container">
+                <div class="jumbotron">
+                    <h2><b>Productos</b></h2>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="txtNombreS">Nombre:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="w3-input w3-animate-input" style="width:25%" id="txtNombreS" ng-model="prodNombre" value="" />
+                        </div>
+                        <label class="control-label col-sm-2" for="txtDescripcionS">Descripcion:</label>
+                        <div class="col-md-4">
+                            <input type="text" class="w3-input w3-animate-input" style="width:25%" name="txtDescripcionS" ng-model="prodDescripcion" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-6">
+                            <input type="submit" class="btn btn-primary" value="Filtrar" ng-click="listarProductos()" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container  table-responsive">
+                <table class="table  table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody data-ng-repeat="prods in Productos.data">
+                        <tr>
+                            <td>
+                                <span><img src="~/Images/edit.gif" alt="Edit" ng-click="editarProducto(prods.Id,prods.Nombre,prods.Descripcion,prods.Estado)" /></span>
+                            </td>
+                            <td>
+                                <span><img src="~/Images/delete.gif" alt="Delete" ng-click="borrarProducto(prods.Id,prods.Nombre)" /></span>
+                            </td>
+                            <td><span>{{prods.Id}}</span></td>
+                            <td><span>{{prods.Nombre}}</span></td>
+                            <td><span>{{prods.Descripcion}}</span></td>
+                            <td><span>{{prods.Estado}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
